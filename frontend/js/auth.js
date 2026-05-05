@@ -1,3 +1,6 @@
+import { api } from './api.js';
+import '../../src/index.css';
+
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('login-form');
     const registerForm = document.getElementById('register-form');

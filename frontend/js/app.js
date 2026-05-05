@@ -1,3 +1,6 @@
+import { api, showToast } from './api.js';
+import '../../src/index.css';
+
 document.addEventListener('DOMContentLoaded', () => {
     const eventsGrid = document.getElementById('events-grid');
     const userNav = document.getElementById('user-nav');

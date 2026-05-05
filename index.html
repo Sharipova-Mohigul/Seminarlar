@@ -136,9 +136,10 @@
         </div>
     </div>
 
-    <script src="/frontend/js/api.js"></script>
-    <script src="/frontend/js/app.js"></script>
-    <script>
+    <script type="module" src="/frontend/js/api.js"></script>
+    <script type="module" src="/frontend/js/app.js"></script>
+    <script type="module">
+        import { api } from '/frontend/js/api.js';
         lucide.createIcons();
         
         // Stats on home page logic

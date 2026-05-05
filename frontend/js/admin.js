@@ -1,3 +1,6 @@
+import { api } from './api.js';
+import '../../src/index.css';
+
 document.addEventListener('DOMContentLoaded', () => {
     if (!api.isAdmin()) {
         window.location.href = '/';

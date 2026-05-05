@@ -60,10 +60,12 @@ class ApiService {
     }
 }
 
-const api = new ApiService();
+export const api = new ApiService();
+window.api = api;
 
 // Toast helper
-function showToast(message, type = 'success') {
+export function showToast(message, type = 'success') {
+    window.showToast = showToast;
     const toast = document.getElementById('toast');
     const toastMessage = document.getElementById('toast-message');
     const toastIcon = document.getElementById('toast-icon');
