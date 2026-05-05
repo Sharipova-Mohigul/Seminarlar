@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Bricolage+Grotesque:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", sans-serif;
+  
+  --color-primary: #3d5afe; /* Electric Blue */
+  --color-secondary: #00e5ff; /* Cyan */
+  --color-accent: #ffeb3b; /* Vibrant Yellow */
+  --color-bg: #0a0a0a;
+}
+
+@layer base {
+  body {
+    @apply bg-bg text-gray-100 font-sans;
+  }
+  
+  h1, h2, h3 {
+    @apply font-display font-extrabold tracking-tight;
+  }
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
+}
+
+.card-vibrant {
+  @apply bg-gray-900/50 border border-gray-800 rounded-3xl p-6 hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10;
+}
+
+.btn-vibrant {
+  @apply relative overflow-hidden px-8 py-4 rounded-2xl font-bold transition-all duration-300 flex items-center justify-center gap-2;
+}
+
+.btn-primary {
+  @apply bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/20 hover:shadow-primary/40;
+}
+
+.btn-accent {
+  @apply bg-accent text-bg hover:scale-105 active:scale-95 shadow-lg shadow-accent/20;
+}
+
+/* Glassmorphism */
+.glass {
+  @apply bg-gray-900/40 backdrop-blur-xl border border-white/5;
+}

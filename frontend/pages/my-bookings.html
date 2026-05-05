@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mening Bronlarim - EventSphere</title>
+    <link rel="stylesheet" href="/src/index.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-950 font-sans antialiased text-gray-100">
+    <!-- Nav -->
+    <nav class="fixed top-0 w-full z-50 glass border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-2 group">
+                <div class="bg-primary p-2 rounded-xl group-hover:rotate-12 transition-transform">
+                    <i data-lucide="sparkles" class="text-white w-6 h-6"></i>
+                </div>
+                <span class="text-2xl font-display font-black text-white italic">EventSphere</span>
+            </a>
+            <div class="flex items-center gap-8">
+                <a href="/" class="text-sm font-bold text-gray-400 hover:text-white transition-colors">Home</a>
+                <a href="/frontend/pages/events.html" class="text-sm font-bold text-gray-400 hover:text-white transition-colors">Seminarlar</a>
+                <button id="logout-btn" class="bg-red-500/10 text-red-400 px-4 py-2 rounded-xl border border-red-400/20 text-xs font-black uppercase tracking-widest hover:bg-red-500 hover:text-white transition-all">Chiqish</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-20 max-w-5xl mx-auto px-6">
+        <div class="mb-16">
+            <h1 class="text-5xl font-display font-black text-white italic italic tracking-tighter">Mening <span class="gradient-text italic">Bronlarim</span></h1>
+            <p class="text-gray-500 mt-4 font-medium max-w-lg">Siz o'z o'rningizni band qilgan barcha tadbirlar. Davomatni saqlashni unutmang.</p>
+        </div>
+
+        <div id="no-bookings" class="hidden text-center py-32 card-vibrant bg-gray-900 border-white/5">
+            <div class="inline-flex items-center justify-center w-24 h-24 rounded-[2.5rem] bg-gray-800 text-gray-600 mb-8 border border-white/5">
+                <i data-lucide="ticket-x" class="w-12 h-12"></i>
+            </div>
+            <h3 class="text-2xl font-display font-black text-white mb-3 italic tracking-tight">Bronlar topilmadi</h3>
+            <p class="text-gray-500 font-medium mb-10">Hozircha hech qanday tadbirga a'zo bo'lmagansiz.</p>
+            <a href="/frontend/pages/events.html" class="btn-vibrant btn-primary inline-flex px-10">
+               Tadbirlarni ko'rish <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </a>
+        </div>
+
+        <div id="bookings-list" class="space-y-10">
+            <!-- Bookings will be loaded here -->
+        </div>
+    </main>
+
+    <!-- Update Booking Modal -->
+    <div id="update-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-bg/80 backdrop-blur-xl"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="card-vibrant bg-gray-900 shadow-2xl max-w-md w-full p-10 relative border border-white/5">
+                <button id="close-update-modal" class="absolute top-6 right-6 text-gray-500 hover:text-white transition-colors">
+                    <i data-lucide="x"></i>
+                </button>
+                <h3 class="text-3xl font-display font-black text-white mb-8 italic tracking-tight">Ma'lumotlarni <span class="text-primary italic">Yangilash</span></h3>
+                <form id="update-form" class="space-y-6">
+                    <input type="hidden" id="update-id">
+                    <div>
+                        <label class="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-2 px-1">Ismingiz</label>
+                        <input type="text" id="update-name" required class="block w-full px-5 py-4 bg-gray-800 border border-gray-700 rounded-2xl text-white outline-none focus:ring-2 focus:ring-secondary transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-2 px-1">Email manzili</label>
+                        <input type="email" id="update-email" required class="block w-full px-5 py-4 bg-gray-800 border border-gray-700 rounded-2xl text-white outline-none focus:ring-2 focus:ring-secondary transition-all">
+                    </div>
+                    <button type="submit" class="btn-vibrant btn-accent w-full mt-4 font-black uppercase tracking-tighter text-lg">
+                        Yangilanishni saqlash
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/frontend/js/api.js"></script>
+    <script src="/frontend/js/user-bookings.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - EventSphere</title>
+    <link rel="stylesheet" href="/src/index.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-950 font-sans antialiased text-gray-200">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside class="w-72 bg-gray-900 border-r border-white/5 hidden lg:flex flex-col relative z-20">
+            <div class="p-10 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20">
+                    <i data-lucide="sparkles" class="w-6 h-6 text-white"></i>
+                </div>
+                <span class="text-2xl font-display font-black text-white italic tracking-tighter">EventSphere</span>
+            </div>
+            
+            <nav class="flex-1 px-6 space-y-3">
+                <p class="px-4 text-[10px] font-black uppercase tracking-widest text-gray-600 mb-2">Asosiy Menu</p>
+                <a href="#stats" class="flex items-center gap-4 px-5 py-4 rounded-2xl bg-primary/10 text-primary border border-primary/20 font-bold transition-all">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i> Dashboard
+                </a>
+                <a href="#events" class="flex items-center gap-4 px-5 py-4 rounded-2xl text-gray-500 hover:bg-white/5 hover:text-white transition-all font-bold">
+                    <i data-lucide="calendar-days" class="w-5 h-5"></i> Seminarlar
+                </a>
+                <a href="#users" class="flex items-center gap-4 px-5 py-4 rounded-2xl text-gray-500 hover:bg-white/5 hover:text-white transition-all font-bold">
+                    <i data-lucide="users" class="w-5 h-5"></i> Foydalanuvchilar
+                </a>
+                <a href="#cancellations" class="flex items-center gap-4 px-5 py-4 rounded-2xl text-gray-500 hover:bg-white/5 hover:text-white transition-all font-bold">
+                    <i data-lucide="alert-triangle" class="w-5 h-5"></i> Bekorlar (Logs)
+                </a>
+            </nav>
+
+            <div class="p-8 border-t border-white/5">
+                <div class="bg-gray-800/50 rounded-2xl p-6 mb-6">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <span class="text-xs font-black text-gray-400 uppercase tracking-widest">Admin rejim</span>
+                    </div>
+                    <p id="admin-name-sidebar" class="text-white font-black">System Admin</p>
+                </div>
+                <button id="logout-btn" class="w-full btn-vibrant border border-white/5 hover:bg-red-500/10 hover:text-red-400 text-gray-500">
+                    <i data-lucide="log-out" class="w-5 h-5"></i> Chiqish
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto bg-bg relative">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-primary/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2"></div>
+            
+            <header class="glass sticky top-0 z-10 px-10 py-6 flex justify-between items-center">
+                <h1 class="text-2xl font-display font-black text-white italic">Boshqaruv <span class="gradient-text">Paneli</span></h1>
+                <div id="add-event-btn" class="btn-vibrant btn-primary !py-3 !px-6 cursor-pointer">
+                    <i data-lucide="plus" class="w-5 h-5"></i> Seminar qo'shish
+                </div>
+            </header>
+
+            <div class="p-10 space-y-16">
+                <!-- Grid Stats -->
+                <section id="stats" class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <div class="card-vibrant group bg-gray-900 overflow-hidden">
+                        <div class="flex items-center gap-6 relative z-10">
+                            <div class="p-5 bg-primary/20 text-primary rounded-2xl border border-primary/20"><i data-lucide="film" class="w-8 h-8"></i></div>
+                            <div>
+                                <p class="text-[10px] text-gray-500 font-black uppercase tracking-widest mb-1">Seminarlar</p>
+                                <h3 id="stat-events" class="text-4xl font-black text-white">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-vibrant group bg-gray-900 overflow-hidden">
+                        <div class="flex items-center gap-6 relative z-10">
+                            <div class="p-5 bg-secondary/20 text-secondary rounded-2xl border border-secondary/20"><i data-lucide="users-2" class="w-8 h-8"></i></div>
+                            <div>
+                                <p class="text-[10px] text-gray-500 font-black uppercase tracking-widest mb-1">A'zolar</p>
+                                <h3 id="stat-bookings" class="text-4xl font-black text-white">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-vibrant group bg-gray-900 overflow-hidden">
+                        <div class="flex items-center gap-6 relative z-10">
+                            <div class="p-5 bg-accent/20 text-accent rounded-2xl border border-accent/20"><i data-lucide="ticket" class="w-8 h-8"></i></div>
+                            <div>
+                                <p class="text-[10px] text-gray-500 font-black uppercase tracking-widest mb-1">Bronlar</p>
+                                <h3 id="stat-seats" class="text-4xl font-black text-white">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-10">
+                    <!-- Events List -->
+                    <div id="events" class="card-vibrant bg-gray-900">
+                        <h2 class="text-2xl font-black italic text-white mb-8">Ma'lumotlar Jadvali</h2>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead class="text-[10px] uppercase font-black text-gray-600 tracking-widest">
+                                    <tr class="border-b border-white/5">
+                                        <th class="pb-5">Seminar</th>
+                                        <th class="pb-5">Manzil/Sana</th>
+                                        <th class="pb-5">Statistika</th>
+                                        <th class="pb-5 text-right">Amallar</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-events-list"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Bookings List -->
+                    <div id="bookings" class="card-vibrant bg-gray-900">
+                        <h2 class="text-2xl font-black italic text-white mb-8">Faol Bronlar</h2>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead class="text-[10px] uppercase font-black text-gray-600 tracking-widest">
+                                    <tr class="border-b border-white/5">
+                                        <th class="pb-5">Foydalanuvchi</th>
+                                        <th class="pb-5">Tadbir</th>
+                                        <th class="pb-5 text-right">Amal</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-bookings-list"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Cancellations LOG -->
+                    <div id="cancellations" class="card-vibrant bg-gray-900 border-red-500/10">
+                        <h2 class="text-2xl font-black italic text-red-500 mb-8 flex items-center gap-3">
+                            <i data-lucide="alert-circle"></i> Bekor qilinganlar
+                        </h2>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead class="text-[10px] uppercase font-black text-gray-600 tracking-widest">
+                                    <tr class="border-b border-white/5">
+                                        <th class="pb-5">Kim tomonidan</th>
+                                        <th class="pb-5">Qaysi tadbir</th>
+                                        <th class="pb-5 text-right">Vaqti</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-cancellations-list"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Users List -->
+                    <div id="users" class="card-vibrant bg-gray-900 border-secondary/10">
+                        <h2 class="text-2xl font-black italic text-secondary mb-8 flex items-center gap-3">
+                            <i data-lucide="user-plus"></i> Foydalanuvchilar
+                        </h2>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead class="text-[10px] uppercase font-black text-gray-600 tracking-widest">
+                                    <tr class="border-b border-white/5">
+                                        <th class="pb-5">Foydalanuvchi</th>
+                                        <th class="pb-5">Rol</th>
+                                        <th class="pb-5 text-right">Sana</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-users-list"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Event Form Modal -->
+    <div id="event-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-slate-950/90 backdrop-blur-md"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="bg-slate-900 rounded-3xl shadow-2xl max-w-lg w-full p-10 relative overflow-y-auto max-h-[90vh] border border-slate-800">
+                <button id="close-event-modal" class="absolute top-6 right-6 text-slate-500 hover:text-slate-300 transition-colors">
+                    <i data-lucide="x"></i>
+                </button>
+                <h3 id="event-modal-title" class="text-2xl font-bold text-white mb-8 tracking-tight">Yangi Tadbir Yaratish</h3>
+                <form id="event-form" class="space-y-6">
+                    <input type="hidden" id="event-id">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 px-1">Tadbir Sarlavhasi</label>
+                        <input type="text" id="ev-title" required class="block w-full px-5 py-4 bg-slate-800 border border-slate-700 rounded-2xl text-white placeholder-slate-500 focus:ring-2 focus:ring-indigo-500 outline-none transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 px-1">Tavsif</label>
+                        <textarea id="ev-description" required rows="4" class="block w-full px-5 py-4 bg-slate-800 border border-slate-700 rounded-2xl text-white placeholder-slate-500 focus:ring-2 focus:ring-indigo-500 outline-none transition-all"></textarea>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6">
+                         <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 px-1">Sana va Vaqt</label>
+                            <input type="datetime-local" id="ev-date" required class="block w-full px-5 py-4 bg-slate-800 border border-slate-700 rounded-2xl text-white focus:ring-2 focus:ring-indigo-500 outline-none transition-all">
+                        </div>
+                         <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 px-1">Joylar soni</label>
+                            <input type="number" id="ev-maxSeats" required min="1" class="block w-full px-5 py-4 bg-slate-800 border border-slate-700 rounded-2xl text-white focus:ring-2 focus:ring-indigo-500 outline-none transition-all">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 px-1">Manzil</label>
+                        <input type="text" id="ev-location" required class="block w-full px-5 py-4 bg-slate-800 border border-slate-700 rounded-2xl text-white placeholder-slate-500 focus:ring-2 focus:ring-indigo-500 outline-none transition-all">
+                    </div>
+                    <button type="submit" id="save-event-btn" class="w-full py-5 bg-indigo-600 text-white font-bold rounded-2xl hover:bg-indigo-500 shadow-xl shadow-indigo-600/20 transition-all font-bold tracking-wide mt-4">
+                        Saqlash
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/frontend/js/api.js"></script>
+    <script src="/frontend/js/admin.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

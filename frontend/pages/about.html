@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventSphere - Biz haqimizda</title>
+    <link rel="stylesheet" href="/src/index.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-950">
+    <!-- Nav -->
+    <nav class="fixed top-0 w-full z-50 glass border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-2 group">
+                <div class="bg-primary p-2 rounded-xl group-hover:rotate-12 transition-transform">
+                    <i data-lucide="sparkles" class="text-white w-6 h-6"></i>
+                </div>
+                <span class="text-2xl font-display font-black text-white italic">EventSphere</span>
+            </a>
+            <div class="flex items-center gap-8">
+                <a href="/" class="text-sm font-bold text-gray-400 hover:text-white">Asosiy</a>
+                <a href="/frontend/pages/events.html" class="text-sm font-bold text-gray-400 hover:text-white">Seminarlar</a>
+                <a href="/frontend/pages/about.html" class="text-sm font-bold text-primary">App haqida</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-20 max-w-4xl mx-auto px-6">
+        <h1 class="text-5xl font-display font-black mb-8 leading-tight">
+            Tadbirlar Olami <span class="gradient-text">Sizning Qo'lingizda</span>
+        </h1>
+        
+        <div class="space-y-12 text-gray-400 leading-relaxed text-lg font-medium">
+            <p>
+                <strong class="text-white">EventSphere</strong> — bu zamonaviy va qulay tadbirlarni boshqarish tizimi. Bizning maqsadimiz — bilimga intiluvchan insonlar va mahoratli spikerlarni bir joyda jamlash.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card-vibrant">
+                    <i data-lucide="shield-check" class="text-secondary w-12 h-12 mb-4"></i>
+                    <h3 class="text-xl text-white mb-2">Ishonchli Bron</h3>
+                    <p class="text-sm">Xavfsiz JWT autentifikatsiya va real vaqtda o'rinlarni boshqarish.</p>
+                </div>
+                <div class="card-vibrant">
+                    <i data-lucide="zap" class="text-accent w-12 h-12 mb-4"></i>
+                    <h3 class="text-xl text-white mb-2">Tezkor Interfeys</h3>
+                    <p class="text-sm">Vite va Node.js yordamida maksimal tezlikda ishlovchi platforma.</p>
+                </div>
+            </div>
+
+            <section>
+                <h2 class="text-3xl text-white mb-6">Imkoniyatlarimiz:</h2>
+                <ul class="space-y-4">
+                    <li class="flex items-center gap-3">
+                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                        <span>Real vaqtda seminarlarni qidirish va filtrlash.</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="w-2 h-2 bg-secondary rounded-full"></div>
+                        <span>Bir klik orqali joy band qilish va bekor qilish.</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="w-2 h-2 bg-accent rounded-full"></div>
+                        <span>Adminlar uchun to'liq boshqaruv paneli va statistika.</span>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <script src="/frontend/js/api.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

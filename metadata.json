@@ -1,0 +1,6 @@
+{
+  "name": "EventSphere",
+  "description": "Professional event booking system with real-time seat management and admin dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["auth", "database", "admin-panel"]
+}

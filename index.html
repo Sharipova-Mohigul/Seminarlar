@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventSphere - Zamonaviy Tadbirlar Markazi</title>
+    <link rel="stylesheet" href="/src/index.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-950 font-sans antialiased text-slate-200">
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="sticky top-0 z-50 glass border-b border-white/5">
+            <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="bg-primary p-2 rounded-xl text-white">
+                        <i data-lucide="calendar" class="w-6 h-6"></i>
+                    </div>
+                    <span class="text-2xl font-display font-black text-white italic tracking-tighter">EventSphere</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-10">
+                    <a href="/" class="text-sm font-bold text-primary">Home</a>
+                    <a href="/frontend/pages/events.html" class="text-sm font-bold text-gray-400 hover:text-white transition-colors">Seminarlar</a>
+                    <a href="/frontend/pages/about.html" class="text-sm font-bold text-gray-400 hover:text-white transition-colors">App haqida</a>
+                    <div id="user-nav" class="flex items-center space-x-6">
+                        <!-- Auth buttons will be injected here -->
+                    </div>
+                </div>
+                    <div class="md:hidden">
+                        <button id="mobile-menu-btn" class="p-2 rounded-md text-slate-400 hover:text-slate-200 hover:bg-slate-800 focus:outline-none">
+                            <i data-lucide="menu"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <header class="relative bg-gray-950 pt-24 pb-32 overflow-hidden border-b border-white/5">
+            <!-- Neon background blur -->
+            <div class="absolute top-0 -left-20 w-96 h-96 bg-primary/20 blur-[120px] rounded-full"></div>
+            <div class="absolute bottom-0 -right-20 w-96 h-96 bg-secondary/10 blur-[120px] rounded-full"></div>
+
+            <div class="relative max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-xs font-black uppercase tracking-widest mb-8">
+                        <i data-lucide="zap" class="w-4 h-4"></i> Yangi avlod platformasi
+                    </div>
+                    <h1 class="text-6xl md:text-8xl font-display font-black leading-none mb-8 italic">
+                        Bilimga <br> <span class="gradient-text italic">Yo'l Och</span>
+                    </h1>
+                    <p class="text-xl text-gray-400 font-medium max-w-lg mb-12 leading-relaxed">
+                        Tadbirlar, seminarlar va konferensiyalar — barchasi professionallar uchun yaratilgan yagona markazda.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-6">
+                        <a href="/frontend/pages/events.html" class="btn-vibrant btn-primary text-lg px-10">
+                            Seminarlarni ko'rish <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </a>
+                        <a href="/frontend/pages/about.html" class="btn-vibrant border border-white/10 hover:bg-white/5 text-white">
+                            App haqida
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden lg:block relative">
+                    <div class="card-vibrant translate-x-6 translate-y-6 rotate-3 opacity-20 absolute inset-0 bg-white"></div>
+                    <div class="relative aspect-square glass rounded-[3rem] p-12 overflow-hidden flex flex-col justify-end group cursor-pointer hover:rotate-2 transition-transform duration-700">
+                         <div class="absolute inset-0 bg-gradient-to-br from-primary/40 to-transparent p-12">
+                             <i data-lucide="globe" class="w-32 h-32 text-white/10 rotate-12"></i>
+                         </div>
+                         <h2 class="text-4xl text-white font-black italic relative z-10 leading-tight">Yagona <br> Markazli <br> Tizim</h2>
+                         <div class="mt-8 flex gap-4 relative z-10">
+                             <div class="w-12 h-12 rounded-2xl bg-secondary/20 flex items-center justify-center text-secondary"><i data-lucide="shield-check"></i></div>
+                             <div class="w-12 h-12 rounded-2xl bg-accent/20 flex items-center justify-center text-accent"><i data-lucide="star"></i></div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dynamic stats -->
+        <section class="max-w-7xl mx-auto px-6 -mt-16 relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div id="hero-stat-1" class="glass rounded-3xl p-8 flex items-center gap-6 group hover:border-primary transition-all">
+                <div class="bg-primary/10 p-4 rounded-2xl text-primary"><i data-lucide="users" class="w-8 h-8"></i></div>
+                <div><p class="text-3xl font-black text-white" id="stat-count-user">500+</p><p class="text-xs font-bold text-gray-500 tracking-widest uppercase">A'zolar</p></div>
+            </div>
+            <div id="hero-stat-2" class="glass rounded-3xl p-8 flex items-center gap-6 group hover:border-secondary transition-all">
+                 <div class="bg-secondary/10 p-4 rounded-2xl text-secondary"><i data-lucide="award" class="w-8 h-8"></i></div>
+                 <div><p class="text-3xl font-black text-white" id="stat-count-events">120+</p><p class="text-xs font-bold text-gray-500 tracking-widest uppercase">Seminarlar</p></div>
+            </div>
+            <div id="hero-stat-3" class="glass rounded-3xl p-8 flex items-center gap-6 group hover:border-accent transition-all">
+                 <div class="bg-accent/10 p-4 rounded-2xl text-accent"><i data-lucide="trending-up" class="w-8 h-8"></i></div>
+                 <div><p class="text-3xl font-black text-white">99%</p><p class="text-xs font-bold text-gray-500 tracking-widest uppercase">Mamnuniyat</p></div>
+            </div>
+        </section>
+
+        <!-- Footer or other landing sections can go here -->
+        <section class="max-w-7xl mx-auto px-6 py-32 text-center">
+            <h2 class="text-4xl font-display font-black text-white mb-8 italic">Boshlashga tayyormisiz?</h2>
+            <p class="text-gray-500 mb-12 max-w-lg mx-auto font-medium">Hozir ro'yxatdan o'ting va seminarlarga birinchilardan bo'lib yoziling.</p>
+            <a href="/frontend/pages/register.html" class="btn-vibrant btn-accent inline-flex px-12">Hoziroq Ro'yxatdan O'tish</a>
+        </section>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="bg-slate-900 rounded-2xl shadow-2xl max-w-md w-full p-8 relative border border-slate-800">
+                <button id="close-modal" class="absolute top-4 right-4 text-slate-500 hover:text-slate-300 transition-colors">
+                    <i data-lucide="x"></i>
+                </button>
+                <h3 id="modal-title" class="text-2xl font-bold text-white mb-2">Joy band qilish</h3>
+                <p id="modal-event-name" class="text-indigo-400 mb-6 font-medium"></p>
+                <form id="booking-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-400 mb-1">Foydalanuvchi ismi</label>
+                        <input type="text" id="book-name" required class="block w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-indigo-500 outline-none transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-400 mb-1">Email manzili</label>
+                        <input type="email" id="book-email" required class="block w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-indigo-500 outline-none transition-all">
+                    </div>
+                    <button type="submit" class="w-full py-4 bg-indigo-600 text-white font-bold rounded-lg hover:bg-indigo-500 shadow-xl shadow-indigo-600/20 transition-all transform active:scale-95">
+                        Bron qilish
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-8 right-8 z-[100] transform translate-y-24 transition-transform duration-300 pointer-events-none">
+        <div class="bg-slate-800 border-l-4 border-indigo-500 shadow-2xl rounded-lg p-5 flex items-center gap-4 border border-slate-700">
+             <i id="toast-icon" data-lucide="check-circle" class="text-indigo-400 w-6 h-6"></i>
+             <span id="toast-message" class="text-sm font-bold text-white tracking-wide">Muvaffaqiyatli!</span>
+        </div>
+    </div>
+
+    <script src="/frontend/js/api.js"></script>
+    <script src="/frontend/js/app.js"></script>
+    <script>
+        lucide.createIcons();
+        
+        // Stats on home page logic
+        async function loadHomeStats() {
+            try {
+                const res = await api.request('/events');
+                const usersRes = await api.request('/auth/users').catch(() => ({ data: [] })); // Only for admin or empty
+                
+                if (document.getElementById('stat-count-events')) {
+                    document.getElementById('stat-count-events').textContent = res.data.length + '+';
+                }
+                if (document.getElementById('stat-count-user')) {
+                    const uCount = usersRes.data?.length || '500';
+                    document.getElementById('stat-count-user').textContent = (uCount > 500 ? uCount : '500') + '+';
+                }
+            } catch (e) {}
+        }
+        loadHomeStats();
+    </script>
+</body>
+</html>
